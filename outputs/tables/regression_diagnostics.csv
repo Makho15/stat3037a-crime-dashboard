@@ -1,0 +1,10 @@
+check,value
+OLS R-squared,0.2792
+OLS adjusted R-squared,0.276
+Max VIF: pct_urban,2.12
+Moran's I on OLS residuals,0.177
+Moran's I p-value (OLS residuals),2.7205270500329406e-23
+LM test p: RSerr,0
+LM test p: RSlag,0
+LM test p: adjRSerr,0.06570504571508984
+LM test p: adjRSlag,1.0226575142269212e-10

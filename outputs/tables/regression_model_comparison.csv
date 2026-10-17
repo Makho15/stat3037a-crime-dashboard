@@ -1,0 +1,4 @@
+model,AIC,logLik,resid_moran_I,resid_moran_p
+OLS,1993.852,-989.926,0.177,0
+Spatial lag,1880.2462,-932.1231,-0.0203,0.86
+Spatial error,1908.5433,-946.2717,-0.0088,0.6698

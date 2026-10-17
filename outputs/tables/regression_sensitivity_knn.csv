@@ -1,0 +1,7 @@
+term,knn_estimate,knn_p,spatial_estimate,spatial_p,same_sign
+(Intercept),4.1091,0,3.9929,0,TRUE
+pct_informal,0.2393,0.244,0.2067,0.309,TRUE
+pct_no_schooling,-1.036,0.0386,-1.0585,0.0325,TRUE
+pct_urban,0.2976,0,0.2926,0,TRUE
+`pct_youth_15-34`,0.3695,0.3501,0.2927,0.4548,TRUE
+pct_no_piped_water,-0.7238,0,-0.6894,0,TRUE
