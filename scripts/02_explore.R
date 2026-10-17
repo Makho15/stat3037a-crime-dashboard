@@ -152,6 +152,12 @@ if (has_zero) {
 
 dist_log <- plot_distribution(master, "log_crime_rate",
                               "Log of violent crime rate", "log_crime_rate")
+# Log of the empirical Bayes smoothed rate: handles real zeros without a +1
+# constant and stabilises tiny-population districts (airports, ports)
+master$log_crime_rate_eb <- log(master$crime_rate_eb)
+dist_log_eb <- plot_distribution(master, "log_crime_rate_eb",
+                                 "Log of smoothed violent crime rate",
+                                 "log_crime_rate_eb")
 
 skew_compare <- bind_rows(dist_raw, dist_log)
 print(skew_compare)
@@ -246,6 +252,7 @@ ggsave("outputs/figures/scatter_covariates.png", p_scatter,
 
 # ---- 7. Save -------------------------------------------------------
 # New file name: never overwrite master_dataset.rds
+master$zero_crime_flag <- master$Violent_crime_total == 0
 saveRDS(master, "data/clean/master_analysis.rds")
 
 cat("\nSaved master_analysis.rds with", nrow(master), "rows.\n")
