@@ -1,0 +1,5 @@
+"structure","districts","links","mean_neighbours","min","max","isolated"
+"queen",1160,6484,5.59,1,12,0
+"rook",1160,6358,5.48,1,12,0
+"5-nearest",1160,5800,5,5,5,0
+"distance band",1160,69114,59.58,1,180,0
