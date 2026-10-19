@@ -1,0 +1,58 @@
+/* custom.css - Theme B "Midnight". Colours mirror R/theme.R. */
+:root {
+  --bg: #0F1419;
+  --surface: #171D24;
+  --border: #2A323B;
+  --text: #E6E9ED;
+  --muted: #98A2AD;
+  --accent: #F5A524;
+}
+
+body { background: var(--bg); color: var(--text); }
+
+/* Navbar */
+.navbar { background: #131A21 !important; border-bottom: 1px solid var(--border); padding-top: 0; padding-bottom: 0; }
+.navbar .navbar-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.01em; }
+.brand-dot { display: inline-block; width: 12px; height: 12px; border-radius: 3px; background: var(--accent); }
+.navbar .nav-link { color: var(--muted); padding: 20px 4px 17px; margin: 0 10px; border-bottom: 3px solid transparent; border-radius: 0; }
+.navbar .nav-link:hover { color: #FFFFFF; }
+.navbar .nav-link.active { color: #FFFFFF; font-weight: 600; border-bottom-color: var(--accent); background: transparent; }
+
+/* Page layout */
+.page-wrap { max-width: 1200px; margin: 0 auto; padding: 32px 24px 48px; display: flex; flex-direction: column; gap: 24px; }
+.page-head h1 { margin: 0 0 6px; font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; color: #FFFFFF; }
+.lead-muted { margin: 0; max-width: 640px; color: var(--muted); font-size: 1.05rem; }
+
+/* Cards */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+.card-header { background: transparent; border-bottom: 1px solid var(--border); font-weight: 600; color: #FFFFFF; }
+
+/* Headline numbers */
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; height: 100%; }
+.stat-label { color: var(--muted); font-size: 0.85rem; }
+.stat-value { font-family: 'IBM Plex Mono', monospace; font-size: 1.8rem; font-weight: 500; color: var(--text); }
+.stat-accent { color: var(--accent); }
+
+/* Interpretation box */
+.what-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+.what-card h2 { margin: 0 0 6px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); }
+.what-card p { margin: 0; color: #C5CBD3; }
+
+/* Cluster legend rows */
+.legend-row { display: flex; align-items: center; gap: 10px; padding: 3px 0; }
+.legend-swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid var(--border); flex: none; }
+.legend-count { margin-left: auto; font-family: 'IBM Plex Mono', monospace; color: var(--muted); }
+
+.placeholder { padding: 24px 8px; }
+.text-muted { color: var(--muted) !important; }
+
+/* Leaflet */
+.leaflet-container { background: var(--bg); font-family: inherit; }
+.info.legend { background: rgba(23, 29, 36, 0.92); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: none; }
+.leaflet-tooltip { background: var(--surface); color: var(--text); border: 1px solid var(--border); box-shadow: none; }
+.leaflet-tooltip-top:before { border-top-color: var(--border); }
+
+/* Inputs */
+.form-control, .form-select, .selectize-input { background: var(--bg); color: var(--text); border-color: var(--border); }
+a { color: var(--accent); }
+a:hover { color: #FFD27A; }
