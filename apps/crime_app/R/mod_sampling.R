@@ -129,7 +129,5 @@ mod_sampling_server <- function(id, data) {
   })
 }
 
-shiny::runApp("apps/crime_app")
 
 
-file.exists("apps/crime_app/R/mod_sampling.R")
