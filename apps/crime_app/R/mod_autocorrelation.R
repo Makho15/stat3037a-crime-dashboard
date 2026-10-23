@@ -156,3 +156,4 @@ mod_autocorrelation_server <- function(id, data = NULL) {
     }, digits = 4, striped = TRUE, spacing = "s")
   })
 }
+
