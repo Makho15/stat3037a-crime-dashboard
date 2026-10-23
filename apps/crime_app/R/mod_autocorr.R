@@ -151,10 +151,11 @@ mod_autocorr_server <- function(id, data = NULL) {
     output$results_table <- renderTable({
       tab <- if (input$table_choice == "global") res()$global else res()$sens
       num <- vapply(tab, is.numeric, logical(1))
-      tab[num] <- lapply(tab[num], signif, 4)
+      tab[num] <- lapply(tab[num], sign
+                         if, 4)
       tab
     }, digits = 4, striped = TRUE, spacing = "s")
   })
 }
-copy apps\crime_app\R\mod_autocorrelation.R %USERPROFILE%\Desktop\mod_autocorrelation_backup.R
+
 
