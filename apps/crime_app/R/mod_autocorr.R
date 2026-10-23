@@ -35,7 +35,7 @@ library(ggplot2)
 }
 
 # ---- UI --------------------------------------------------------------------
-mod_autocorrelation_ui <- function(id) {
+mod_autocorr_ui <- function(id) {
   ns <- NS(id)
   sidebarLayout(
     sidebarPanel(
@@ -76,7 +76,7 @@ mod_autocorrelation_ui <- function(id) {
 }
 
 # ---- Server ----------------------------------------------------------------
-mod_autocorrelation_server <- function(id, data = NULL) {
+mod_autocorr_server <- function(id, data = NULL) {
   moduleServer(id, function(input, output, session) {
     
     # `data` may be NULL, a list, or a reactive returning a list.
