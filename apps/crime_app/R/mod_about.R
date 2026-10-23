@@ -41,23 +41,20 @@ mod_about_ui <- function(id) {
            tags$li(ext_link("https://open.africa/dataset/police-station-boundaries", "Police station boundaries"),
                    " (shapefile, Code for South Africa / Africa Open Data).")))),
 
-    card(card_header("Building the 1,160-district dataset"),
-         card_body(p("Crime records are by police station and the Census covariates are by police district, so names were matched with a crosswalk and joined to the boundaries. Records without a match on both sides were dropped: [number] crime-only stations and [number] covariate-only districts (see the output of scripts/01_build_master.R)."))),
-
     card(card_header("Limitations"),
          card_body(tags$ul(
            tags$li("Counts are reported crimes, so they reflect reporting as well as occurrence."),
            tags$li("Results describe association, not causation."),
            tags$li("Census 2022 counts are survey-weighted, so some are not whole numbers."),
            tags$li("Polygons are simplified for display; all statistics were computed on the full boundaries."),
-           tags$li("Districts excluded because the datasets do not match. SAPS reports crime by police station, while the Census 2022 covariates and the boundary file are by police district, and the three sources do not list exactly the same units")))),
+           tags$li("[Add any limitation specific to your own tab.]")))),
 
     card(card_header("Team"),
          card_body(div(class = "team-grid",
-           team_member("Ayanda Sibanda",    "Autocorrelation tab",         "ayanda.jpeg"),
-           team_member("Lethabo Madzibedi", "Explore and Regression tabs", "lethabo.jpeg"),
-           team_member("Makhosonke Tugwana", "Weights tab", "makhosonke.jpg"),
-           team_member("Musawenkosi Mahlangu",              "Sampling tab",                "musa.jpeg")
+           team_member("Ayanda Sibanda",    "Autocorrelation tab",         "ayanda.jpg"),
+           team_member("Lethabo Madzibedi", "Explore and Regression tabs", "lethabo.jpg"),
+           team_member("Makhosonke Tugwana", "Home, Weights and About tabs", "makhosonke.jpg"),
+           team_member("Musa",              "Sampling tab",                "musa.jpg")
          )))
   )
 }

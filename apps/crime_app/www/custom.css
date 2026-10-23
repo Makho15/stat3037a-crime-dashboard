@@ -120,3 +120,17 @@ body { overflow-x: hidden; }
   .hero { animation: none; --p: 1; }
   .hero-van img { animation: none; }
 }
+
+/* Home: methodology section */
+.section-head h2 { margin: 0 0 4px; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; color: #FFFFFF; }
+.accordion {
+  --bs-accordion-bg: var(--surface); --bs-accordion-color: var(--text);
+  --bs-accordion-border-color: var(--border); --bs-accordion-btn-color: #FFFFFF;
+  --bs-accordion-btn-bg: var(--surface); --bs-accordion-active-bg: var(--surface);
+  --bs-accordion-active-color: var(--accent); --bs-accordion-btn-focus-box-shadow: none;
+}
+.accordion-item { background: var(--surface); border-color: var(--border); }
+.accordion-button { background: var(--surface); color: #FFFFFF; font-weight: 600; }
+.accordion-button:not(.collapsed) { color: var(--accent); background: var(--surface); box-shadow: none; }
+.accordion-button::after, .accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); }
+.accordion-body { color: #C5CBD3; }
