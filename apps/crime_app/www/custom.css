@@ -56,3 +56,67 @@ body { background: var(--bg); color: var(--text); }
 .form-control, .form-select, .selectize-input { background: var(--bg); color: var(--text); border-color: var(--border); }
 a { color: var(--accent); }
 a:hover { color: #FFD27A; }
+
+/* Team section (About tab) */
+.team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.team-member { display: flex; align-items: center; gap: 16px; }
+.team-avatar { position: relative; flex: none; width: 96px; height: 96px; border-radius: 50%; overflow: hidden;
+  background: var(--bg); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; }
+.team-avatar span { font-family: 'IBM Plex Mono', monospace; font-size: 1.6rem; color: var(--accent); }
+.team-avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.team-name { font-weight: 600; color: #FFFFFF; font-size: 1.05rem; }
+.team-role { color: var(--muted); }
+
+/* Home tab: guide to the app */
+.tour-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.tour-item { border-left: 3px solid var(--accent); padding-left: 14px; }
+.tour-title { font-weight: 600; color: #FFFFFF; }
+.tour-text { color: var(--muted); }
+
+/* ---- Home hero: police van drives to the station, revealing the title ----
+   One animated number, --p (0 to 1), drives both the van position and the
+   title reveal, so they always stay in step. Needs a modern browser. */
+@property --p { syntax: '<number>'; inherits: true; initial-value: 0; }
+body { overflow-x: hidden; }
+
+.hero {
+  --p: 0; --vw: 15%; --sw: 34%; --sr: 2%;
+  --stop: calc(100% - var(--sr) - var(--sw) * .75);                   /* van centre when it parks, just left of the door */
+  --travel: calc(var(--stop) + var(--vw) / 2);                        /* van front when it parks */
+  position: relative; width: 100vw; margin-left: calc(50% - 50vw);
+  height: clamp(300px, 28vw, 430px); overflow: hidden;
+  background: linear-gradient(180deg, #0B0F14 0%, #131A21 100%);
+  border-bottom: 1px solid var(--border);
+  animation: hero-drive 6s cubic-bezier(.5, .05, .3, 1) .4s 1 both;
+}
+@keyframes hero-drive { from { --p: 0; } to { --p: 1; } }
+
+.hero-glow { position: absolute; right: -6%; bottom: 0; width: 58%; height: 95%;
+  background: radial-gradient(closest-side, rgba(245, 165, 36, .16), transparent); }
+
+.hero-title-wrap { position: absolute; left: 0; right: 0; top: 0; z-index: 4;
+  padding-top: clamp(20px, 3vw, 40px);
+  clip-path: inset(0 calc(100% - var(--p) * var(--travel)) 0 0); }
+.hero-title-inner { padding-left: 4%; box-sizing: content-box; max-width: calc(var(--travel) - 8%); }
+.hero-title { margin: 0; font-size: clamp(1.3rem, 2.7vw, 2.9rem); font-weight: 700;
+  letter-spacing: -0.02em; line-height: 1.15; color: #FFFFFF; text-wrap: balance; }
+.hero-title .hl { color: var(--accent); }
+.hero-sub { margin: 10px 0 0; color: var(--muted); font-size: clamp(.8rem, 1.1vw, 1rem);
+  font-family: 'IBM Plex Mono', monospace; }
+
+.hero-station { position: absolute; right: var(--sr); bottom: 25px; width: var(--sw); z-index: 1; }
+.hero-road { position: absolute; left: 0; right: 0; bottom: 0; height: 26px; z-index: 2;
+  background: repeating-linear-gradient(90deg, rgba(245, 165, 36, .55) 0 28px, transparent 28px 60px) center / 100% 2px no-repeat, #0A0D11;
+  border-top: 1px solid var(--border); }
+.hero-van { position: absolute; bottom: 3px; width: var(--vw); z-index: 3;
+  left: calc(-1 * var(--vw) + var(--p) * var(--travel)); }
+.hero-van img { display: block; width: 100%; animation: hero-bob .28s ease-in-out 22 alternate; }
+@keyframes hero-bob { from { transform: translateY(0); } to { transform: translateY(-1.5px); } }
+
+@media (max-width: 700px) {
+  .hero { --vw: 24%; --sw: 46%; --sr: 2%; height: 300px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero { animation: none; --p: 1; }
+  .hero-van img { animation: none; }
+}

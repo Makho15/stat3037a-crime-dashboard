@@ -11,7 +11,8 @@ library(leaflet)
 library(sf)
 library(dplyr)
 library(ggplot2)
-
+# spdep also has a function called card(), so be explicit
+card <- bslib::card
 # ---- Load code: theme and helpers first, then every module ---------------------
 source("R/theme.R")
 source("R/helpers.R")
@@ -25,6 +26,7 @@ app_data <- list(
   districts  = readRDS("data/districts.rds"),
   meta       = readRDS("data/app_meta.rds"),
   links      = readRDS("data/neighbour_links.rds"),
+  counts     = load_if_exists("data/neighbour_counts.rds"),
   tables     = readRDS("data/tables.rds"),
   regression = load_if_exists("data/regression_results.rds"),
   sampling   = load_if_exists("data/sampling_results.rds")

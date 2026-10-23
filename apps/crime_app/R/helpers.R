@@ -27,7 +27,6 @@ crime_choropleth <- function(data, var = "crime_rate",
                   htmlEscape(data$police_district), htmlEscape(legend_title), fmt_rate(vals))
 
   leaflet(data, options = leafletOptions(minZoom = 4)) |>
-    addProviderTiles(providers$CartoDB.DarkMatter) |>
     addPolygons(
       fillColor = pal(vals), fillOpacity = 0.9,
       color = crime_cols$bg, weight = 0.3,
@@ -46,7 +45,6 @@ lisa_map <- function(data) {
   show <- names(lisa_cols) != "No neighbours"
 
   leaflet(data, options = leafletOptions(minZoom = 4)) |>
-    addProviderTiles(providers$CartoDB.DarkMatter) |>
     addPolygons(
       fillColor = fill, fillOpacity = 0.9,
       color = crime_cols$bg, weight = 0.3,
