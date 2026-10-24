@@ -54,7 +54,7 @@ mod_about_ui <- function(id) {
            team_member("Ayanda Sibanda",    "Autocorrelation tab", "ayanda.jpeg"),
            team_member("Lethabo Madzibedi", "Explore and Regression tabs", "lethabo.jpeg"),
            team_member("Makhosonke Tugwana", "Home, Weights and About tabs", "makhosonke.jpg"),
-           team_member("Musa", "Sampling tab", "musa.jpeg")
+           team_member("Musawenkosi Mahlangu", "Sampling tab", "musa.jpeg")
          )))
   )
 }
