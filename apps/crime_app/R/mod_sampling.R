@@ -85,7 +85,6 @@ mod_sampling_server <- function(id, data) {
                      m$police_district, format(round(m$crime_rate), big.mark = ","),
                      ifelse(m$selected, "<br/><b>In sample</b>", ""))
       leaflet::leaflet(m) |>
-        leaflet::addProviderTiles("CartoDB.DarkMatter") |>   # use the same base layer as helpers.R
         leaflet::addPolygons(
           fillColor = ifelse(m$selected, accent, "#3A4450"),
           fillOpacity = ifelse(m$selected, 0.9, 0.5),

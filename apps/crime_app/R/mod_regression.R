@@ -95,7 +95,6 @@ reg_residual_map <- function(d, res, legend_title) {
                   formatC(res, format = "f", digits = 2))
 
   leaflet(d, options = leafletOptions(minZoom = 4)) |>
-    addProviderTiles(providers$CartoDB.DarkMatter) |>
     addPolygons(
       fillColor = pal(clamped), fillOpacity = 0.9,
       color = crime_cols$bg, weight = 0.3,
@@ -290,11 +289,11 @@ mod_regression_server <- function(id, data) {
       what_this_shows(
         sprintf("Ordinary regression leaves spatial pattern in its residuals (Moran's I = %s, p %s); the %s model reduces it to %s (p %s). ",
                 formatC(ols$resid_moran_I, format = "f", digits = 3),
-                ifelse(ols$resid_moran_p < 0.001, "< 0.001",
+                ifelse(ols$resid_moran_p < 0.05, "< 0.05",
                        paste("=", formatC(ols$resid_moran_p, format = "f", digits = 2))),
                 tolower(reg_model_names[[pick]]),
                 formatC(sp$resid_moran_I, format = "f", digits = 3),
-                ifelse(sp$resid_moran_p < 0.001, "< 0.001",
+                ifelse(sp$resid_moran_p < 0.05, "< 0.05",
                        paste("=", formatC(sp$resid_moran_p, format = "f", digits = 2)))),
         sprintf("AIC is %s for OLS and %s for the %s model (lower is better). These are associations between district averages, not causes.",
                 formatC(ols$AIC, format = "f", digits = 0, big.mark = ","),

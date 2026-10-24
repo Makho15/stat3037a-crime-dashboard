@@ -21,7 +21,7 @@ ac_owner_note <- NULL
 # p-values such as 9.6e-73 would print as 0 in a table, so format them as text
 ac_fmt_p <- function(p) {
   ifelse(is.na(p), "",
-         ifelse(p < 0.001, formatC(p, format = "e", digits = 2),
+         ifelse(p < 0.05, formatC(p, format = "e", digits = 2),
                 formatC(p, format = "f", digits = 4)))
 }
 
@@ -104,7 +104,6 @@ mod_autocorr_server <- function(id, data) {
     # Base map: drawn once, never redrawn when the controls change
     output$map <- renderLeaflet({
       leaflet(options = leafletOptions(minZoom = 4)) |>
-        addProviderTiles(providers$CartoDB.DarkMatter) |>
         fitBounds(bb[["xmin"]], bb[["ymin"]], bb[["xmax"]], bb[["ymax"]])
     })
 
@@ -244,7 +243,7 @@ mod_autocorr_server <- function(id, data) {
       what_this_shows(
         sprintf("Global Moran's I is %s (p %s), so districts with similar violent crime rates tend to sit next to each other. ",
                 ac_fmt_num(m$moran_I, 3),
-                if (m$moran_p < 0.001) "< 0.001" else paste("=", ac_fmt_p(m$moran_p))),
+                if (m$moran_p < 0.05) "< 0.05" else paste("=", ac_fmt_p(m$moran_p))),
         "The analysis variable is the log violent crime rate, log(rate + 1). Global G uses the raw rate with binary distance-band weights. ",
         sprintf("The map shows where: %d High-High districts are hot spots (high crime surrounded by high crime) and %d Low-Low districts are cold spots. ",
                 n_hh, n_ll),
