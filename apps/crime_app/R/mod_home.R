@@ -40,7 +40,7 @@ methodology_section <- function() {
         tags$ul(
           tags$li("Murder"), tags$li("Attempted murder"), tags$li("Common assault"),
           tags$li("Assault with intent to inflict grievous bodily harm"),
-          tags$li("Sexual offences"), tags$li("Aggravated robbery"), tags$li("Common robbery")),
+          tags$li("Sexual offences"), tags$li("Aggravated robbery"), tags$li("Common robbery"), tags$li("Kidnapping")),
         p("The crime rate is the violent crime total divided by the district population, multiplied by 100,000."),
         p("Rates are strongly right-skewed, so the clustering tests use the logarithm of the rate. Maps and the hot-spot test use the raw rate.")),
 
@@ -127,7 +127,7 @@ mod_home_server <- function(id, data) {
     output$s_hh        <- renderUI(stat_card("High-High districts", format(m$n_hh, big.mark = ",")))
 
     output$findings <- renderUI({
-      p_txt <- if (is.na(m$moran_p)) "" else if (m$moran_p < 0.001) ", p < 0.001" else paste0(", p = ", signif(m$moran_p, 2))
+      p_txt <- if (is.na(m$moran_p)) "" else if (m$moran_p < 0.05) ", p < 0.05" else paste0(", p = ", signif(m$moran_p, 2))
       tags$ul(
         tags$li(strong("Violent crime is spatially clustered. "),
                 sprintf("Global Moran's I is %.3f%s, so districts with high rates tend to sit next to other high-rate districts.",

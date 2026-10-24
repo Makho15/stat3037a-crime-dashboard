@@ -11,6 +11,7 @@
 #           outputs/tables/*.csv                    (Phases 3 and 4)
 # Output  : apps/crime_app/data/districts.rds        simplified map + attributes + LISA
 #           apps/crime_app/data/neighbour_links.rds  link lines for the Weights tab
+#           apps/crime_app/data/weights_detail.rds   neighbour lists for the Weights tab
 #           apps/crime_app/data/tables.rds           summary tables
 #           apps/crime_app/data/app_meta.rds         headline numbers
 #           apps/crime_app/data/regression_results.rds, sampling_results.rds (copied)
@@ -97,6 +98,12 @@ for (nm in c("queen", "rook", "knn", "dist")) {
   else message("No nb object named '", nm, "' in weights.rds")
 }
 saveRDS(counts, file.path(out_dir, "neighbour_counts.rds"))
+
+# Neighbour lists for every structure, as plain integer lists (0 = no neighbour).
+# The Weights tab uses them to show each district's weights and spatial lag.
+wdetail <- list(nb = lapply(wts$nb[c("queen", "rook", "knn", "dist")],
+                            function(nb) lapply(unclass(nb), as.integer)))
+saveRDS(wdetail, file.path(out_dir, "weights_detail.rds"))
 
 # ---- 5. Summary tables -------------------------------------------------------
 read_tab <- function(f) {
