@@ -47,14 +47,14 @@ mod_about_ui <- function(id) {
            tags$li("Results describe association, not causation."),
            tags$li("Census 2022 counts are survey-weighted, so some are not whole numbers."),
            tags$li("Polygons are simplified for display; all statistics were computed on the full boundaries."),
-           tags$li("[Add any limitation specific to your own tab.]")))),
+           tags$li("Districts excluded because the datasets do not match. SAPS reports crime by police station, while the Census 2022 covariates and the boundary file are by police district, and the three sources do not list exactly the same units.")))),
 
     card(card_header("Team"),
          card_body(div(class = "team-grid",
-           team_member("Ayanda Sibanda",    "Autocorrelation tab",         "ayanda.jpg"),
-           team_member("Lethabo Madzibedi", "Explore and Regression tabs", "lethabo.jpg"),
+           team_member("Ayanda Sibanda",    "Autocorrelation tab", "ayanda.jpeg"),
+           team_member("Lethabo Madzibedi", "Explore and Regression tabs", "lethabo.jpeg"),
            team_member("Makhosonke Tugwana", "Home, Weights and About tabs", "makhosonke.jpg"),
-           team_member("Musa",              "Sampling tab",                "musa.jpg")
+           team_member("Musa", "Sampling tab", "musa.jpeg")
          )))
   )
 }
