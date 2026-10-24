@@ -189,7 +189,7 @@ mod_regression_server <- function(id, data) {
         if (nrow(row) == 0) return(NULL)
         stat_card(
           sprintf("Residual Moran's I, %s (p %s)", reg_model_names[[key]],
-                  ifelse(row$resid_moran_p < 0.001, "< 0.001",
+                  ifelse(row$resid_moran_p < 0.05, "< 0.05",
                          paste("=", formatC(row$resid_moran_p, format = "f", digits = 2)))),
           formatC(row$resid_moran_I, format = "f", digits = 3),
           accent = identical(key, m)
