@@ -43,7 +43,7 @@ reg_clean_term <- function(x) {
 
 reg_fmt_p <- function(p) {
   ifelse(is.na(p), "",
-         ifelse(p < 0.001, "<0.001", formatC(p, format = "f", digits = 3)))
+         ifelse(p < 0.05, "<0.05", formatC(p, format = "f", digits = 3)))
 }
 
 reg_fmt <- function(x, digits = 3) {
