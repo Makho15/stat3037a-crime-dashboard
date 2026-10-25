@@ -68,10 +68,16 @@ what_this_shows <- function(...) {
       p(...))
 }
 
+# Page heading with the bullet-and-shield animation (see "Page banner" in custom.css)
 page_head <- function(title, subtitle = NULL) {
-  div(class = "page-head",
-      h1(title),
-      if (!is.null(subtitle)) p(class = "lead-muted", subtitle))
+  div(class = "pbanner",
+      div(class = "pb-text",
+          div(class = "page-head",
+              h1(title),
+              if (!is.null(subtitle)) p(class = "lead-muted", subtitle))),
+      div(class = "pb-bullet", tags$img(src = "img/bullet.png", alt = "")),
+      div(class = "pb-shield",
+          tags$img(src = "img/shield.png", alt = "Four people holding a shield")))
 }
 
 # ---- Placeholder shown until a tab owner pushes their module ---------------

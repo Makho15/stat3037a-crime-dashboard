@@ -166,7 +166,7 @@ mod_explore_server <- function(id, data) {
         geom_vline(xintercept = mean(x, na.rm = TRUE),
                    colour = crime_cols$text, linewidth = 0.8, linetype = "dashed") +
         labs(title = "Distribution across districts",
-             subtitle = "Amber line = median, dashed line = mean",
+             subtitle = "Crimson line = median, dashed line = mean",
              x = xlab, y = "Number of districts") +
         theme_crime()
     }, res = 96)

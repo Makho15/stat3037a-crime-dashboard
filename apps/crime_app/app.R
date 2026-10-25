@@ -53,7 +53,8 @@ ui <- do.call(
       theme = crime_theme,
       fillable = FALSE,
       lang = "en",
-      header = tags$head(tags$link(rel = "stylesheet", href = "custom.css"))
+      header = tags$head(tags$link(rel = "stylesheet", href = "custom.css"),
+                         tags$script(src = "banner.js"))
     ),
     lapply(tabs, function(t) nav_panel(t$label, tab_ui(t$name, t$label, t$owner)))
   )

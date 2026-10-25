@@ -3,36 +3,41 @@
 
 mod_sampling_ui <- function(id) {
   ns <- NS(id)
-  bslib::layout_sidebar(
-    sidebar = bslib::sidebar(
-      width = 300,
-      radioButtons(ns("design"), "Sampling design",
-                   choices = c("Simple random" = "random",
-                               "Stratified (urbanisation)" = "stratified",
-                               "Systematic (west to east)" = "systematic")),
-      selectInput(ns("n"), "Sample size (districts)",
-                  choices = c(25, 50, 100, 200), selected = 50),
-      actionButton(ns("draw"), "Draw new sample", class = "btn-primary w-100")
-    ),
-    bslib::card(
-      bslib::card_header("Sampled districts"),
-      leaflet::leafletOutput(ns("map"), height = 420)
-    ),
-    bslib::layout_columns(
-      col_widths = c(4, 4, 4),
-      bslib::card(bslib::card_header("This sample"), tableOutput(ns("this_sample"))),
-      bslib::card(bslib::card_header("1,000 repeated samples"), plotOutput(ns("hist"), height = 250)),
-      bslib::card(bslib::card_header("Performance by design"), tableOutput(ns("perf")))
-    ),
-    bslib::card(
-      bslib::card_header("What this shows"),
-      p("Each design was repeated 1,000 times at each sample size and compared with the true mean ",
-        "violent crime rate across all 1,160 districts (about 1,446 per 100,000). All three designs ",
-        "were approximately unbiased, and the error fell as the sample size grew (simple random ",
-        "sampling RMSE: 664 at n = 25, 256 at n = 200). At n = 50 the designs were almost identical ",
-        "(RMSE 539 to 549), so none was clearly best, and stratified and systematic sampling were ",
-        "worse than simple random sampling at n = 25. Crime rates are highly right-skewed ",
-        "(skewness 21.47), so a few extreme districts drive most of the sampling error.")
+  div(class = "page-wrap",
+    page_head("Sampling",
+              "How well do simple, stratified and systematic samples estimate the national crime rate?"),
+    bslib::layout_sidebar(
+      fillable = FALSE,
+      sidebar = bslib::sidebar(
+        width = 300,
+        radioButtons(ns("design"), "Sampling design",
+                     choices = c("Simple random" = "random",
+                                 "Stratified (urbanisation)" = "stratified",
+                                 "Systematic (west to east)" = "systematic")),
+        selectInput(ns("n"), "Sample size (districts)",
+                    choices = c(25, 50, 100, 200), selected = 50),
+        actionButton(ns("draw"), "Draw new sample", class = "btn-primary w-100")
+      ),
+      bslib::card(
+        bslib::card_header("Sampled districts"),
+        leaflet::leafletOutput(ns("map"), height = 420)
+      ),
+      bslib::layout_columns(
+        col_widths = c(5, 7),
+        bslib::card(bslib::card_header("This sample"), tableOutput(ns("this_sample"))),
+        bslib::card(bslib::card_header("1,000 repeated samples"), plotOutput(ns("hist"), height = 250))
+      ),
+      bslib::card(bslib::card_header("Performance by design"), tableOutput(ns("perf"))),
+      bslib::card(
+        bslib::card_header("What this shows"),
+        p("Each design was repeated 1,000 times at each sample size and compared with the true mean ",
+          "violent crime rate across all 1,160 districts (about 1,446 per 100,000). All three designs ",
+          "were approximately unbiased, and the error fell as the sample size grew (simple random ",
+          "sampling RMSE: 664 at n = 25, 256 at n = 200). At n = 50 the designs were almost identical ",
+          "(RMSE 539 to 549), so none was clearly best, and stratified and systematic sampling were ",
+          "worse than simple random sampling at n = 25. Crime rates are highly right-skewed ",
+          "(skewness 21.47), so a few extreme districts drive most of the sampling error.")
+      )
     )
   )
 }
@@ -46,7 +51,7 @@ mod_sampling_server <- function(id, data) {
     N  <- nrow(dd)
     
     # Replace with the real constants from R/theme.R (names may differ)
-    accent <- if (exists("COL_ACCENT")) COL_ACCENT else "#F5A524"
+    accent <- if (exists("COL_ACCENT")) COL_ACCENT else "#E0213F"
     labels <- c(random = "Simple random", stratified = "Stratified", systematic = "Systematic")
     
     # Ordering for systematic sampling: centroid longitude, west to east
@@ -86,13 +91,13 @@ mod_sampling_server <- function(id, data) {
                      ifelse(m$selected, "<br/><b>In sample</b>", ""))
       leaflet::leaflet(m) |>
         leaflet::addPolygons(
-          fillColor = ifelse(m$selected, accent, "#3A4450"),
+          fillColor = ifelse(m$selected, accent, "#3E4958"),
           fillOpacity = ifelse(m$selected, 0.9, 0.5),
           color = "#222", weight = 0.3,
           label = lapply(lab, htmltools::HTML)
         ) |>
         leaflet::addLegend(position = "bottomright",
-                           colors = c(accent, "#3A4450"),
+                           colors = c(accent, "#3E4958"),
                            labels = c("In sample", "Not sampled"),
                            title = paste0(labels[[input$design]], ", n = ", input$n))
     })

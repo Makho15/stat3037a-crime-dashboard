@@ -1,17 +1,17 @@
-/* custom.css - Theme B "Midnight". Colours mirror R/theme.R. */
+/* custom.css - Theme "Crimson and Slate". Colours mirror R/theme.R. */
 :root {
-  --bg: #0F1419;
-  --surface: #171D24;
-  --border: #2A323B;
-  --text: #E6E9ED;
-  --muted: #98A2AD;
-  --accent: #F5A524;
+  --bg: #141920;
+  --surface: #1E2530;
+  --border: #343E4C;
+  --text: #E8EBEF;
+  --muted: #9AA6B4;
+  --accent: #E0213F;
 }
 
 body { background: var(--bg); color: var(--text); }
 
 /* Navbar */
-.navbar { background: #131A21 !important; border-bottom: 1px solid var(--border); padding-top: 0; padding-bottom: 0; }
+.navbar { background: #1A2029 !important; border-bottom: 1px solid var(--border); padding-top: 0; padding-bottom: 0; }
 .navbar .navbar-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.01em; }
 .brand-dot { display: inline-block; width: 12px; height: 12px; border-radius: 3px; background: var(--accent); }
 .navbar .nav-link { color: var(--muted); padding: 20px 4px 17px; margin: 0 10px; border-bottom: 3px solid transparent; border-radius: 0; }
@@ -36,7 +36,7 @@ body { background: var(--bg); color: var(--text); }
 /* Interpretation box */
 .what-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
 .what-card h2 { margin: 0 0 6px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); }
-.what-card p { margin: 0; color: #C5CBD3; }
+.what-card p { margin: 0; color: #C8D0DA; }
 
 /* Cluster legend rows */
 .legend-row { display: flex; align-items: center; gap: 10px; padding: 3px 0; }
@@ -48,14 +48,14 @@ body { background: var(--bg); color: var(--text); }
 
 /* Leaflet */
 .leaflet-container { background: var(--bg); font-family: inherit; }
-.info.legend { background: rgba(23, 29, 36, 0.92); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: none; }
+.info.legend { background: rgba(30, 37, 48, 0.92); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: none; }
 .leaflet-tooltip { background: var(--surface); color: var(--text); border: 1px solid var(--border); box-shadow: none; }
 .leaflet-tooltip-top:before { border-top-color: var(--border); }
 
 /* Inputs */
 .form-control, .form-select, .selectize-input { background: var(--bg); color: var(--text); border-color: var(--border); }
 a { color: var(--accent); }
-a:hover { color: #FFD27A; }
+a:hover { color: #FF7A8F; }
 
 /* Team section (About tab) */
 .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
@@ -85,14 +85,14 @@ body { overflow-x: hidden; }
   --travel: calc(var(--stop) + var(--vw) / 2);                        /* van front when it parks */
   position: relative; width: 100vw; margin-left: calc(50% - 50vw);
   height: clamp(300px, 28vw, 430px); overflow: hidden;
-  background: linear-gradient(180deg, #0B0F14 0%, #131A21 100%);
+  background: linear-gradient(180deg, #10141A 0%, #1A2029 100%);
   border-bottom: 1px solid var(--border);
   animation: hero-drive 6s cubic-bezier(.5, .05, .3, 1) .4s 1 both;
 }
 @keyframes hero-drive { from { --p: 0; } to { --p: 1; } }
 
 .hero-glow { position: absolute; right: -6%; bottom: 0; width: 58%; height: 95%;
-  background: radial-gradient(closest-side, rgba(245, 165, 36, .16), transparent); }
+  background: radial-gradient(closest-side, rgba(224, 33, 63, .16), transparent); }
 
 .hero-title-wrap { position: absolute; left: 0; right: 0; top: 0; z-index: 4;
   padding-top: clamp(20px, 3vw, 40px);
@@ -106,7 +106,7 @@ body { overflow-x: hidden; }
 
 .hero-station { position: absolute; right: var(--sr); bottom: 25px; width: var(--sw); z-index: 1; }
 .hero-road { position: absolute; left: 0; right: 0; bottom: 0; height: 26px; z-index: 2;
-  background: repeating-linear-gradient(90deg, rgba(245, 165, 36, .55) 0 28px, transparent 28px 60px) center / 100% 2px no-repeat, #0A0D11;
+  background: repeating-linear-gradient(90deg, rgba(224, 33, 63, .55) 0 28px, transparent 28px 60px) center / 100% 2px no-repeat, #0C0F14;
   border-top: 1px solid var(--border); }
 .hero-van { position: absolute; bottom: 3px; width: var(--vw); z-index: 3;
   left: calc(-1 * var(--vw) + var(--p) * var(--travel)); }
@@ -133,4 +133,46 @@ body { overflow-x: hidden; }
 .accordion-button { background: var(--surface); color: #FFFFFF; font-weight: 600; }
 .accordion-button:not(.collapsed) { color: var(--accent); background: var(--surface); box-shadow: none; }
 .accordion-button::after, .accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); }
-.accordion-body { color: #C5CBD3; }
+.accordion-body { color: #C8D0DA; }
+
+
+/* ---- Page banner: a bullet flies in, reveals the heading, and is stopped by the shield ----
+   Same trick as the Home hero: one animated number --p (0 to 1) drives both the
+   bullet position and the text reveal. Sizes come from --H (banner height). */
+.pbanner {
+  --p: 0; --H: clamp(180px, 15vw, 210px);
+  --sw: calc(var(--H) * 1.82);                     /* shield group width (0.98 * H * 1.8946) */
+  --bw: calc(var(--H) * 0.9);                      /* bullet width */
+  --travel: calc(100% - var(--sw) * 0.96);         /* bullet tip stops at the shield */
+  position: relative; height: var(--H); overflow: hidden;
+  animation: pb-drive 1.9s cubic-bezier(.35, .05, .75, .9) .25s 1 both;
+}
+@keyframes pb-drive { from { --p: 0; } to { --p: 1; } }
+
+.pb-text { position: absolute; left: 0; top: 0; width: 100%; z-index: 3; padding-top: 4px;
+  clip-path: inset(0 calc(100% - var(--p) * var(--travel)) 0 0); }
+.pb-text .page-head { max-width: calc(var(--travel) - 16px); }
+
+.pb-bullet { position: absolute; z-index: 2; width: var(--bw);
+  bottom: calc(var(--H) * 0.368);
+  left: calc(-1 * var(--bw) + var(--p) * var(--travel));
+  animation: pb-fade .5s ease 2.45s 1 both; }
+.pb-bullet img { display: block; width: 100%; }
+@keyframes pb-fade { from { opacity: 1; } to { opacity: 0; } }
+
+.pb-shield { position: absolute; right: 0; bottom: 0; z-index: 3; height: calc(var(--H) * 0.98);
+  animation: pb-hit .45s ease-out 2.15s 1 both; }
+.pb-shield img { display: block; height: 100%; width: auto; }
+@keyframes pb-hit { 0%, 100% { transform: translateX(0); } 30% { transform: translateX(-7px); } }
+
+@media (max-width: 700px) {
+  .pbanner { height: auto; animation: none; --p: 1; overflow: visible; }
+  .pb-text { position: static; clip-path: none; }
+  .pb-text .page-head { max-width: none; }
+  .pb-bullet, .pb-shield { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pbanner { animation: none; --p: 1; }
+  .pb-bullet { display: none; }
+  .pb-shield { animation: none; }
+}

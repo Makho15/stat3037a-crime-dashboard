@@ -151,3 +151,4 @@ print(data.frame(file = basename(rownames(sizes)), MB = round(sizes$size / 1e6, 
 cat("\nMoran's I on the Home tab:", round(meta$moran_I, 3),
     "| High-High districts:", meta$n_hh, "\n")
 cat("Step 2 finished. Quick look: plot(st_geometry(readRDS('", out_dir, "/districts.rds')))\n", sep = "")
+

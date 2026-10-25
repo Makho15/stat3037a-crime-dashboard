@@ -1,5 +1,5 @@
 # =====================================================================
-# R/theme.R  -  Theme B "Midnight"
+# R/theme.R  -  Theme "Crimson and Slate"
 # Every colour and font lives here. Change them here and the whole app,
 # including maps and ggplots, follows.
 # =====================================================================
@@ -8,17 +8,17 @@ library(ggplot2)
 
 # ---- Colours ---------------------------------------------------------
 crime_cols <- list(
-  bg           = "#0F1419",   # page background
-  surface      = "#171D24",   # cards
-  border       = "#2A323B",
-  text         = "#E6E9ED",
-  muted        = "#98A2AD",
-  accent       = "#F5A524",   # amber: emphasis only
-  accent_light = "#FFD27A"
+  bg           = "#141920",   # page background
+  surface      = "#1E2530",   # cards
+  border       = "#343E4C",
+  text         = "#E8EBEF",
+  muted        = "#9AA6B4",
+  accent       = "#E0213F",   # crimson: emphasis only
+  accent_light = "#FF7A8F"
 )
 
-# Sequential ramp for crime rate (low -> high), dark to bright amber
-crime_ramp <- c("#2B2416", "#6B4A14", "#B8780F", "#F5A524", "#FFD27A")
+# Sequential ramp for crime rate (low -> high), dark slate to crimson
+crime_ramp <- c("#262B35", "#5C2837", "#9E2342", "#E0213F", "#FF7A8F")
 
 # LISA cluster colours: same hues as the Phase 4 figure
 lisa_cols <- c(
@@ -26,8 +26,8 @@ lisa_cols <- c(
   "Low-Low"         = "#2C7BB6",
   "High-Low"        = "#FDAE61",
   "Low-High"        = "#ABD9E9",
-  "Not significant" = "#2A323B",
-  "No neighbours"   = "#0F1419"
+  "Not significant" = "#343E4C",
+  "No neighbours"   = "#141920"
 )
 
 # ---- Bootstrap 5 theme (bslib) -----------------------------------------

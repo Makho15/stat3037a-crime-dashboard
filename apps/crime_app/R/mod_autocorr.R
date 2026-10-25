@@ -56,7 +56,7 @@ mod_autocorr_ui <- function(id) {
              leafletOutput(ns("map"), height = 520)),
 
         layout_columns(
-          col_widths = c(5, 7),
+          col_widths = 12,
           card(card_header("Districts per class"),
                plotOutput(ns("counts_plot"), height = 280)),
           card(card_header(textOutput(ns("table_title"))),

@@ -84,7 +84,7 @@ reg_coef_table <- function(r, model) {
   out
 }
 
-# Residual map: blue = below prediction, amber = above prediction
+# Residual map: blue = below prediction, crimson = above prediction
 reg_residual_map <- function(d, res, legend_title) {
   lim <- as.numeric(stats::quantile(abs(res), 0.99, na.rm = TRUE))
   clamped <- pmax(pmin(res, lim), -lim)
@@ -134,7 +134,7 @@ mod_regression_ui <- function(id) {
              leafletOutput(ns("map"), height = 480)),
 
         layout_columns(
-          col_widths = c(7, 5),
+          col_widths = 12,
           card(card_header(textOutput(ns("coef_title"))),
                tableOutput(ns("coef")),
                uiOutput(ns("coef_note"))),
